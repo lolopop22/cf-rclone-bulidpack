@@ -21,4 +21,6 @@ EOF
 echo "in finalize.sh"
 echo $PATH
 echo $VERSION_RCLONE
+echo $BUILD_DIR
+echo $BUILDPACK_DIR
 
