@@ -13,6 +13,7 @@ BUILDPACK_DIR=$(dirname $(readlink -f ${BASH_SOURCE%/*}))
 echo "in supply.sh"
 echo $RCLONE_DIR
 echo $BUILDPACK_DIR
+ls $BUILDPACK_DIR
 
 #if [ -f "${BUILD_DIR}/runtime.txt" ]
 #then
@@ -52,3 +53,8 @@ export VERSION_RCLONE=${VERSION_RCLONE}
 export PATH="\$PATH:/home/vcap/deps/${DEPS_IDX}/rclone/bin"
 EOF
 
+echo $BUILDPACK_DIR
+ls $BUILDPACK_DIR
+echo "--"
+echo $BUILD_DIR
+ls $BUILD_DIR
