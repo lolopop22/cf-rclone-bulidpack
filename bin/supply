@@ -45,7 +45,6 @@ mkdir -p "${RCLONE_DIR}/bin"
 unzip -q "${CACHE_DIR}/rclone-${VERSION_RCLONE}.zip" -d "${RCLONE_DIR}" "*/rclone"
 chmod +x "${RCLONE_DIR}/rclone-v${VERSION_RCLONE}-linux-amd64/rclone"
 cd "${RCLONE_DIR}/bin" && ln -sf "../rclone-v${VERSION_RCLONE}-linux-amd64/rclone"
-cp "../rclone-v${VERSION_RCLONE}-linux-amd64/rclone" "/bin"
 
 echo "-----> Setting up environment profile"
 mkdir -p "$BUILD_DIR/.profile.d"
