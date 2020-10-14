@@ -10,24 +10,17 @@ DEPS_IDX="${4}"
 # dependencies paths
 RCLONE_DIR="${DEPS_DIR}/${DEPS_IDX}/rclone"
 BUILDPACK_DIR=$(dirname $(readlink -f ${BASH_SOURCE%/*}))
-echo "in supply.sh"
-echo $RCLONE_DIR
-echo $BUILDPACK_DIR
-ls $BUILDPACK_DIR
 
-#if [ -f "${BUILD_DIR}/runtime.txt" ]
-#then
-#    VERSION_RCLONE=$((grep -v '^#' "${BUILD_DIR}/runtime.txt" || true) | head -n1)
-#    if [ -z "${VERSION_RCLONE}" ]
-#    then
-#        echo "ERROR> runtime.txt found but no version specified!"
-#        exit 1
-#    fi
-#fi
-
+if [ -f "${BUILD_DIR}/runtime.txt" ]
+then
+    VERSION_RCLONE=$((grep -v '^#' "${BUILD_DIR}/runtime.txt" || true) | head -n1)
+    if [ -z "${VERSION_RCLONE}" ]
+    then
+        echo "ERROR> runtime.txt found but no version specified!"
+        exit 1
+    fi
+fi
 source ${BUILDPACK_DIR}/rclone-parameters.sh
-echo "version_rclone: $VERSION_RCLONE"
-
 if [ -f "${CACHE_DIR}/rclone-${VERSION_RCLONE}.zip" ]
 then
     echo "-----> Using rclone ${VERSION_RCLONE} from cache"
@@ -39,19 +32,11 @@ else
         exit 1
     fi
 fi
-
 echo "-----> Installing rclone"
 mkdir -p "${RCLONE_DIR}/bin"
 unzip -q "${CACHE_DIR}/rclone-${VERSION_RCLONE}.zip" -d "${RCLONE_DIR}" "*/rclone"
 chmod +x "${RCLONE_DIR}/rclone-v${VERSION_RCLONE}-linux-amd64/rclone"
 cd "${RCLONE_DIR}/bin" && ln -sf "../rclone-v${VERSION_RCLONE}-linux-amd64/rclone"
-
-echo "-----> Setting up environment profile"
-mkdir -p "$BUILD_DIR/.profile.d"
-cat <<EOF > "$BUILD_DIR/.profile.d/0010_rclone.sh"
-export VERSION_RCLONE=${VERSION_RCLONE}
-export PATH="\$PATH:/home/vcap/deps/${DEPS_IDX}/rclone/bin"
-EOF
 
 echo $BUILDPACK_DIR
 ls $BUILDPACK_DIR
