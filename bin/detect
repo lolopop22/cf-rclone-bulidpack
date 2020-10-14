@@ -3,6 +3,8 @@
 set -e
 
 BUILD_DIR=$(cd "$1/" && pwd)
+echo "in detect.sh"
+echo $BUILD_DIR
 
 # Acepts all apps!
 echo "rclone"

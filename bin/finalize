@@ -19,4 +19,8 @@ export VERSION_RCLONE=${VERSION_RCLONE}
 export RCLONE_RC_ADDR=":\$PORT"
 export PATH="\$PATH:/home/vcap/deps/${DEPS_IDX}/rclone/bin"
 EOF
+echo "in finalize.sh"
+echo $PATH
+echo $VERSION_RCLONE
+echo $RCLONE_RC_ADDR
 
