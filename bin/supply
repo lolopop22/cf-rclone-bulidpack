@@ -23,7 +23,7 @@ then
         exit 1
     fi
 fi
-echo "version_rclone: VERSION_RCLONE"
+echo "version_rclone: $VERSION_RCLONE"
 
 source ${BUILDPACK_DIR}/rclone-parameters.sh
 
