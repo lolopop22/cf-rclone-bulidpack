@@ -45,3 +45,10 @@ unzip -q "${CACHE_DIR}/rclone-${VERSION_RCLONE}.zip" -d "${RCLONE_DIR}" "*/rclon
 chmod +x "${RCLONE_DIR}/rclone-v${VERSION_RCLONE}-linux-amd64/rclone"
 cd "${RCLONE_DIR}/bin" && ln -sf "../rclone-v${VERSION_RCLONE}-linux-amd64/rclone"
 
+echo "-----> Setting up environment profile"
+mkdir -p "$BUILD_DIR/.profile.d"
+cat <<EOF > "$BUILD_DIR/.profile.d/0010_rclone.sh"
+export VERSION_RCLONE=${VERSION_RCLONE}
+export PATH="\$PATH:/home/vcap/deps/${DEPS_IDX}/rclone/bin"
+EOF
+
