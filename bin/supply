@@ -14,18 +14,18 @@ echo "in supply.sh"
 echo $RCLONE_DIR
 echo $BUILDPACK_DIR
 
-if [ -f "${BUILD_DIR}/runtime.txt" ]
-then
-    VERSION_RCLONE=$((grep -v '^#' "${BUILD_DIR}/runtime.txt" || true) | head -n1)
-    if [ -z "${VERSION_RCLONE}" ]
-    then
-        echo "ERROR> runtime.txt found but no version specified!"
-        exit 1
-    fi
-fi
-echo "version_rclone: $VERSION_RCLONE"
+#if [ -f "${BUILD_DIR}/runtime.txt" ]
+#then
+#    VERSION_RCLONE=$((grep -v '^#' "${BUILD_DIR}/runtime.txt" || true) | head -n1)
+#    if [ -z "${VERSION_RCLONE}" ]
+#    then
+#        echo "ERROR> runtime.txt found but no version specified!"
+#        exit 1
+#    fi
+#fi
 
 source ${BUILDPACK_DIR}/rclone-parameters.sh
+echo "version_rclone: $VERSION_RCLONE"
 
 if [ -f "${CACHE_DIR}/rclone-${VERSION_RCLONE}.zip" ]
 then
