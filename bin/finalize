@@ -18,9 +18,10 @@ cat <<EOF > "$BUILD_DIR/.profile.d/0010_rclone.sh"
 export VERSION_RCLONE=${VERSION_RCLONE}
 export PATH="\$PATH:/home/vcap/deps/${DEPS_IDX}/rclone/bin"
 EOF
-echo "in finalize.sh"
-echo $PATH
-echo $VERSION_RCLONE
-echo $BUILD_DIR
-echo $BUILDPACK_DIR
+# comments for dubugging purposes: 
+# echo "in finalize.sh"
+# echo $PATH
+# echo $VERSION_RCLONE
+# echo $BUILD_DIR
+# echo $BUILDPACK_DIR
 
